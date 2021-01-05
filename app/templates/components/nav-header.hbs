@@ -1,0 +1,11 @@
+<div class="topnav {{if menuVisible "responsive"}}" id="myTopnav">
+  {{#each links as |link|}}
+    {{#link-to link.url}}
+      {{link.title}}
+    {{/link-to}}
+  {{/each}}
+  <a href="javascript:void(0);" class="icon" {{action "toggleMenu"}}>
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+{{yield}}

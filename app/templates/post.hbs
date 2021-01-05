@@ -1,0 +1,10 @@
+{{post-details post=model.post}}
+{{outlet}}
+<div class="comments-container">
+  <h1 class="comments-header">
+    What are others saying:
+  </h1>
+  {{#each model.comments as |comment|}}
+    {{post-comment comment=comment}}
+  {{/each}}
+</div>

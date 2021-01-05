@@ -1,0 +1,30 @@
+<div class="comment-container">
+  <div class="comment-image-container">
+    <div class="thumbnail">
+      <img
+        class="img-responsive comment-user_image"
+        src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        alt="user-image"
+      >
+    </div>
+  </div>
+  <div class="comment-body">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>
+          {{comment.email}}
+          :
+          <span class="sentence-case">
+            {{comment.name}}
+          </span>
+        </strong>
+        <span class="text-muted sentence-case">
+          commented 5 days ago
+        </span>
+      </div>
+      <div class="panel-body sentence-case">
+        {{comment.body}}
+      </div>
+    </div>
+  </div>
+</div>
