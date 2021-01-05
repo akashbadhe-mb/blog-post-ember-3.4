@@ -1,11 +1,11 @@
 import { module, test } from "qunit";
 import { setupApplicationTest } from "ember-qunit";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
-import { click, currentURL, visit } from "@ember/test-helpers";
+import { currentURL, visit } from "@ember/test-helpers";
 
 module("Acceptance | blog post", function (hooks) {
   setupApplicationTest(hooks);
-  // setupMirage(hooks);
+  setupMirage(hooks);
   test("should redirect to posts route", async function (assert) {
     await visit("/");
     assert.equal(
@@ -17,22 +17,25 @@ module("Acceptance | blog post", function (hooks) {
 
   test("should show post list", async function (assert) {
     await visit("/posts");
-    assert.notEqual(
+    this.server.createList("post", 3);
+    assert.equal(
       this.element.querySelectorAll(".post-card").length,
-      0,
+      3,
       "should display posts"
     );
   });
 
   test("should show details for a specific post", async function (assert) {
-    await visit("/posts");
-    await click(this.element.querySelector('a[href*="/posts/2"]'));
-    assert.equal(currentURL(), "/posts/2", "should navigate to details route");
+    let post = this.server.create("post", {
+      title: "My first blog",
+      body: "This is my very first blog.",
+    });
+    await visit(`/movies/${post.id}`);
     assert.ok(
       this.element
         .querySelector(".post-details .post-header")
         .textContent.toLowerCase()
-        .includes("qui est esse"),
+        .includes(post.title),
       "should show post title"
     );
   });
