@@ -1,12 +1,15 @@
 import Component from "@ember/component";
 
 export default Component.extend({
-  links: [
-    {
-      title: "Home",
-      url: "index",
-    },
-  ],
+  init() {
+    this._super(...arguments);
+    this.set("links", [
+      {
+        title: "Home",
+        url: "index",
+      },
+    ]);
+  },
   menuVisible: false,
 
   actions: {
