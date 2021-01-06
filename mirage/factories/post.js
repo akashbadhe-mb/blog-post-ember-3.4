@@ -1,4 +1,4 @@
-import { Factory } from "ember-cli-mirage";
+import { Factory, trait} from "ember-cli-mirage";
 
 export default Factory.extend({
   title(i) {
@@ -12,4 +12,9 @@ export default Factory.extend({
     let max = 20;
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
+  withComments: trait({
+    afterCreate(post, server) {
+      server.createList('comment', 5, { post });
+    }
+  })
 });
